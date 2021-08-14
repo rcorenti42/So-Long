@@ -63,6 +63,7 @@ SRC = ft_atoi.c \
 	ft_lstmap.c \
 	ft_lstnew.c \
 	ft_lstsize.c \
+	ft_strndup.c \
 
 OBJ = $(SRC:.c=.o)
 

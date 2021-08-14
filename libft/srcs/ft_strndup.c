@@ -1,27 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.c                                          :+:      :+:    :+:   */
+/*   ft_strndup.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rcorenti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/14 05:04:13 by rcorenti          #+#    #+#             */
-/*   Updated: 2021/08/14 05:05:51 by rcorenti         ###   ########.fr       */
+/*   Created: 2021/08/14 06:05:22 by rcorenti          #+#    #+#             */
+/*   Updated: 2021/08/14 06:05:25 by rcorenti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
-#include <stdio.h>
-#include <errno.h>
-#include <unistd.h>
+#include "libft.h"
 
-int	main(int argc, char **argv)
+char		*ft_strndup(const char *s, size_t size)
 {
-    if (argc != 2)
-    {
-        printf("Error\nNot enough or too many arguments\n");
-        return (0);
-    }
-    
-    return (0);
+	char	*str;
+	size_t	i;
+
+	if (!s)
+		return (NULL);
+	i = ft_strlen(s);
+	if (size > i)
+		size = i;
+	str = (char *)malloc(sizeof(char) * (size + 1));
+	if (str)
+	{
+		ft_memcpy(str, s, size);
+		str[size] = '\0';
+	}
+	return (str);
 }

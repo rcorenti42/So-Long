@@ -6,7 +6,7 @@
 /*   By: rcorenti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 00:14:48 by rcorenti          #+#    #+#             */
-/*   Updated: 2021/11/16 01:31:11 by rcorenti         ###   ########.fr       */
+/*   Updated: 2021/11/16 03:02:34 by rcorenti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdio.h>
 #include <errno.h>
 #include <unistd.h>
-#include "so_long.h"
+#include "../includes/so_long.h"
 
 int	main(int argc, char **argv)
 {
@@ -27,7 +27,7 @@ int	main(int argc, char **argv)
 		return (0);
 	}
 	winit.mlx = mlx_init();
-	winit.win = mlx_new_windows(winit.mlx, WIN_WIDTH, WIN_HEIGHT, "So Long !");
+	winit.win = mlx_new_window(winit.mlx, WIN_WIDTH, WIN_HEIGHT, "So Long !");
 	
 	return (0);
 }

@@ -6,14 +6,14 @@
 /*   By: rcorenti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 01:41:06 by rcorenti          #+#    #+#             */
-/*   Updated: 2021/11/16 02:51:47 by rcorenti         ###   ########.fr       */
+/*   Updated: 2021/11/17 01:58:28 by rcorenti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PIPEX_H
 # define PIPEX_H
 
-# include "../mlx/mlx.h"
+# include "mlx.h"
 
 # define WIN_WIDTH 1920
 # define WIN_HEIGHT 1080

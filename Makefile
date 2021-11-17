@@ -6,7 +6,7 @@
 #    By: rcorenti <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/17 01:30:16 by rcorenti          #+#    #+#              #
-#    Updated: 2021/11/17 01:52:45 by rcorenti         ###   ########.fr        #
+#    Updated: 2021/11/17 03:31:47 by rcorenti         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,11 +15,13 @@ NAME = so_long
 
 CC = gcc
 
-FLAGS = -Wall -Wextra -Werror
+FLAGS = #-Wall -Wextra -Werror
 
-HEADER = includes
+HEADER = -I includes -I ${MLX}
 
-srcs = so_long.c
+srcs =	so_long.c\
+	get_next_line.c\
+	get_next_line_utils.c
 
 OBJS = ${addprefix srcs/,${srcs:.c=.o}}
 
@@ -28,7 +30,7 @@ MLX = minilibx-linux
 MLXFLAGS = -L ${MLX}/ -lmlx -lXext -lX11
 
 .c.o :
-	${CC} ${FLAGS} -I ${HEADER} -c $< -o ${<:.c=.o}
+	${CC} ${FLAGS} ${HEADER} -c $< -o ${<:.c=.o}
 
 all: $(NAME)
 

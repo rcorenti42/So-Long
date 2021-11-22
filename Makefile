@@ -6,7 +6,7 @@
 #    By: rcorenti <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/17 01:30:16 by rcorenti          #+#    #+#              #
-#    Updated: 2021/11/17 03:31:47 by rcorenti         ###   ########.fr        #
+#    Updated: 2021/11/18 05:58:41 by rcorenti         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,8 @@ FLAGS = #-Wall -Wextra -Werror
 
 HEADER = -I includes -I ${MLX}
 
-srcs =	so_long.c\
+srcs =	main.c\
+	so_long.c\
 	get_next_line.c\
 	get_next_line_utils.c
 

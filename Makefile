@@ -6,7 +6,7 @@
 #    By: rcorenti <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/17 01:30:16 by rcorenti          #+#    #+#              #
-#    Updated: 2021/11/18 05:58:41 by rcorenti         ###   ########.fr        #
+#    Updated: 2021/11/23 03:48:46 by rcorenti         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ HEADER = -I includes -I ${MLX}
 
 srcs =	main.c\
 	so_long.c\
+	parser.c\
 	get_next_line.c\
 	get_next_line_utils.c
 

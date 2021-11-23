@@ -6,7 +6,7 @@
 /*   By: rcorenti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 01:41:06 by rcorenti          #+#    #+#             */
-/*   Updated: 2021/11/23 05:19:54 by rcorenti         ###   ########.fr       */
+/*   Updated: 2021/11/23 06:00:49 by rcorenti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,17 @@
 # define WIN_HEIGHT 1080
 # define VALID_CHARS "01CEP"
 
+# define BACK_PATH "../textures/background.xpm"
+# define COLLEC_PATH "../textures/collectible.xpm"
+# define DOOR_PATH "../textures/door.xpm"
+# define WALL_PATH "../textures/wall.xpm"
+# define PLAYER_PATH "../textures/player.xpm"
+
 typedef struct	s_img {
 	void	*img;
 	char	*img_ptr;
-	int	x;
-	int	y;
+	int	width;
+	int	height;
 	int	bpp;
 	int	size_line;
 	int	endian;
@@ -43,7 +49,11 @@ typedef struct	s_mlx {
 	int	width;
 	int	height;
 	int	moves;
-	t_img	img;
+	t_img	back;
+	t_img	collec;
+	t_img	door;
+	t_img	wall;
+	t_img	player;
 }		t_mlx;
 
 void	check_map(char **argv, t_mlx *mlx);

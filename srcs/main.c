@@ -6,7 +6,7 @@
 /*   By: rcorenti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 06:07:43 by rcorenti          #+#    #+#             */
-/*   Updated: 2021/11/23 04:25:31 by rcorenti         ###   ########.fr       */
+/*   Updated: 2021/11/23 05:15:30 by rcorenti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,6 @@ void	ft_error(char *str)
 	exit(EXIT_FAILURE);
 }
 
-void	pixel_put(t_mlx *mlx, int x, int y, int color)
-{
-	char	*dst;
-
-	dst = mlx->img + (y * mlx->size_line + x * (mlx->bpp / 8));
-	*(unsigned int *)dst = color;
-}
-
 int	main(int argc, char **argv)
 {
 	t_mlx	mlx;
@@ -57,4 +49,3 @@ int	main(int argc, char **argv)
 	mlx_loop(mlx.mlx_ptr);
 	return (0);
 }
-                                                         

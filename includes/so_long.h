@@ -6,7 +6,7 @@
 /*   By: rcorenti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 01:41:06 by rcorenti          #+#    #+#             */
-/*   Updated: 2021/11/23 04:25:20 by rcorenti         ###   ########.fr       */
+/*   Updated: 2021/11/23 05:19:54 by rcorenti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ typedef struct	s_mlx {
 	t_img	img;
 }		t_mlx;
 
-int	check_map(char **argv, t_mlx *mlx);
+void	check_map(char **argv, t_mlx *mlx);
 void	ft_error(char *str);
 void	ft_putstr_fd(char *str, int fd);
 char	*ft_strcpy(char *dest, char *src);

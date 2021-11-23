@@ -6,7 +6,7 @@
 /*   By: rcorenti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 01:03:10 by rcorenti          #+#    #+#             */
-/*   Updated: 2021/11/23 03:51:44 by rcorenti         ###   ########.fr       */
+/*   Updated: 2021/11/23 04:10:06 by rcorenti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,7 @@ void    malloc_map(t_mlx *mlx, int line, int col, char *file)
                 i++;
 }
 
-int     check_map(char **argv, t_mlx *mlx)
+void	check_map(char **argv, t_mlx *mlx)
 {
         int             fd;
         int             i;
@@ -148,5 +148,4 @@ int     check_map(char **argv, t_mlx *mlx)
         chars_valid(mlx);
         chars_minimum(mlx);
         check_walls(mlx, i, j);
-        return (1);
 }

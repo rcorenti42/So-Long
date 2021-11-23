@@ -6,7 +6,7 @@
 /*   By: rcorenti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 06:07:43 by rcorenti          #+#    #+#             */
-/*   Updated: 2021/11/23 03:52:12 by rcorenti         ###   ########.fr       */
+/*   Updated: 2021/11/23 04:25:31 by rcorenti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,6 @@ int	main(int argc, char **argv)
 	mlx.mlx_ptr = mlx_init();
 	mlx.mlx_win = mlx_new_window(mlx.mlx_ptr, WIN_WIDTH,
 			WIN_HEIGHT, "So Long !");
-        mlx.img_ptr = mlx_new_image(mlx.mlx_ptr, WIN_WIDTH, WIN_HEIGHT);
-	mlx.img = mlx_get_data_addr(mlx.img_ptr, &mlx.bpp,
-                        &mlx.size_line, &mlx.endian);
-
-	pixel_put(&mlx, 5, 5, 0x00FF0000);
-	mlx_put_image_to_window(mlx.mlx_ptr, mlx.mlx_win, mlx.img_ptr, 0, 0);
-
 	so_long(mlx);
 	mlx_loop(mlx.mlx_ptr);
 	return (0);

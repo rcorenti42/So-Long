@@ -6,7 +6,7 @@
 /*   By: rcorenti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 01:41:06 by rcorenti          #+#    #+#             */
-/*   Updated: 2021/11/18 06:18:54 by rcorenti         ###   ########.fr       */
+/*   Updated: 2021/11/23 04:25:20 by rcorenti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,17 @@
 # define WIN_HEIGHT 1080
 # define VALID_CHARS "01CEP"
 
+typedef struct	s_img {
+	void	*img;
+	char	*img_ptr;
+	int	x;
+	int	y;
+	int	bpp;
+	int	size_line;
+	int	endian;
+}		t_img;
+
 typedef struct	s_mlx {
-	void	*img_ptr;
-	char	*img;
 	char	**map;
 	void	*mlx_ptr;
 	void	*mlx_win;
@@ -34,10 +42,8 @@ typedef struct	s_mlx {
 	int	sqrt_size;
 	int	width;
 	int	height;
-	int	size_line;
-	int	bpp;
-	int	endian;
 	int	moves;
+	t_img	img;
 }		t_mlx;
 
 int	check_map(char **argv, t_mlx *mlx);

@@ -6,7 +6,7 @@
 /*   By: rcorenti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 01:03:10 by rcorenti          #+#    #+#             */
-/*   Updated: 2021/11/24 03:45:31 by rcorenti         ###   ########.fr       */
+/*   Updated: 2021/11/24 06:36:55 by rcorenti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ void    chars_valid(t_mlx *mlx)
         int     valid;
 
         i = 0;
-        while (i < strlen(mlx->map[0]))
+        while (i < mlx->height / TEXTURES_SIZE)
         {
-                j = 0;
-                while (mlx->map[i][j])
+		j = 0;
+		while (mlx->map[i][j])
                 {
                         k = 0;
                         valid = 0;
@@ -53,7 +53,7 @@ void    chars_minimum(t_mlx *mlx)
         E = 0;
         P = 0;
         i = 0;
-        while (i < strlen(mlx->map[0]))
+        while (i < mlx->height / TEXTURES_SIZE)
         {
                 j = 0;
                 while (mlx->map[i][j])

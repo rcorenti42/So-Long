@@ -6,7 +6,7 @@
 /*   By: rcorenti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 01:03:10 by rcorenti          #+#    #+#             */
-/*   Updated: 2021/11/23 05:18:20 by rcorenti         ###   ########.fr       */
+/*   Updated: 2021/11/24 03:45:31 by rcorenti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void    chars_valid(t_mlx *mlx)
         int     valid;
 
         i = 0;
-        while (mlx->map[i])
+        while (i < strlen(mlx->map[0]))
         {
                 j = 0;
                 while (mlx->map[i][j])
@@ -53,7 +53,7 @@ void    chars_minimum(t_mlx *mlx)
         E = 0;
         P = 0;
         i = 0;
-        while (mlx->map[i])
+        while (i < strlen(mlx->map[0]))
         {
                 j = 0;
                 while (mlx->map[i][j])
@@ -144,6 +144,8 @@ void	check_map(char **argv, t_mlx *mlx)
                 i++;
         }
         close(fd);
+	mlx->height = i * TEXTURES_SIZE;
+	mlx->width = j * TEXTURES_SIZE;
         malloc_map(mlx, i, j, argv[1]);
         chars_valid(mlx);
         chars_minimum(mlx);

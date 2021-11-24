@@ -6,7 +6,7 @@
 /*   By: rcorenti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 06:07:43 by rcorenti          #+#    #+#             */
-/*   Updated: 2021/11/23 06:05:11 by rcorenti         ###   ########.fr       */
+/*   Updated: 2021/11/24 05:34:50 by rcorenti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,24 +36,26 @@ void	stock_xpm(t_mlx *mlx)
 {
 	mlx->back.img = mlx_xpm_file_to_image(mlx->mlx_ptr, BACK_PATH,
 			&mlx->back.width, &mlx->back.height);
-	mlx_get_data_addr(mlx->back.img, &mlx->back.bpp,
+	mlx->back.img_ptr = mlx_get_data_addr(mlx->back.img, &mlx->back.bpp,
 			&mlx->back.size_line, &mlx->back.endian);
-        //mlx->collec.img = mlx_xpm_file_to_image(mlx->mlx_ptr, COLLEC_PATH,
-        //                &mlx->collec.width, &mlx->collec.height);
-        //mlx_get_data_addr(mlx->collec.img, &mlx->collec.bpp,
-	//		&mlx->collec.size_line, &mlx->collec.endian);
-        //mlx->door.img = mlx_xpm_file_to_image(mlx->mlx_ptr, DOOR_PATH,
-	//		&mlx->door.width, &mlx->door.height);
-        //mlx_get_data_addr(mlx->door.img, &mlx->door.bpp,
-	//		&mlx->door.size_line, &mlx->door.endian);
-        //mlx->wall.img = mlx_xpm_file_to_image(mlx->mlx_ptr, WALL_PATH,
-	//		&mlx->wall.width, &mlx->wall.height);
-        //mlx_get_data_addr(mlx->wall.img, &mlx->wall.bpp,
-	//		&mlx->wall.size_line, &mlx->wall.endian);
-        //mlx->player.img = mlx_xpm_file_to_image(mlx->mlx_ptr, PLAYER_PATH,
-	//		&mlx->player.width, &mlx->player.height);
-        //mlx_get_data_addr(mlx->player.img, &mlx->player.bpp,
-	//		&mlx->player.size_line, &mlx->player.endian);
+	mlx->collec.img = mlx_xpm_file_to_image(mlx->mlx_ptr, COLLEC_PATH,
+			&mlx->collec.width, &mlx->collec.height);
+	mlx->collec.img_ptr = mlx_get_data_addr(mlx->collec.img,
+			&mlx->collec.bpp, &mlx->collec.size_line,
+			&mlx->collec.endian);
+	mlx->door.img = mlx_xpm_file_to_image(mlx->mlx_ptr, DOOR_PATH,
+			&mlx->door.width, &mlx->door.height);
+	mlx->door.img_ptr = mlx_get_data_addr(mlx->door.img, &mlx->door.bpp,
+			&mlx->door.size_line, &mlx->door.endian);
+	mlx->wall.img = mlx_xpm_file_to_image(mlx->mlx_ptr, WALL_PATH,
+			&mlx->wall.width, &mlx->wall.height);
+	mlx->wall.img_ptr = mlx_get_data_addr(mlx->wall.img, &mlx->wall.bpp,
+			&mlx->wall.size_line, &mlx->wall.endian);
+	mlx->player.img = mlx_xpm_file_to_image(mlx->mlx_ptr, PLAYER_PATH,
+			&mlx->player.width, &mlx->player.height);
+	mlx->player.img_ptr = mlx_get_data_addr(mlx->player.img,
+			&mlx->player.bpp, &mlx->player.size_line,
+			&mlx->player.endian);
 }
 
 int	main(int argc, char **argv)
@@ -67,10 +69,10 @@ int	main(int argc, char **argv)
 	}
 	check_map(argv, &mlx);
 	mlx.mlx_ptr = mlx_init();
-	mlx.mlx_win = mlx_new_window(mlx.mlx_ptr, WIN_WIDTH,
-			WIN_HEIGHT, "So Long !");
+	mlx.mlx_win = mlx_new_window(mlx.mlx_ptr, mlx.width,
+			mlx.height, "So Long !");
 	stock_xpm(&mlx);
-	//so_long(&mlx);
+	so_long(&mlx);
 	mlx_loop(mlx.mlx_ptr);
 	return (0);
 }

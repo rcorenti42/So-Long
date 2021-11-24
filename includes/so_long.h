@@ -6,7 +6,7 @@
 /*   By: rcorenti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 01:41:06 by rcorenti          #+#    #+#             */
-/*   Updated: 2021/11/23 06:00:49 by rcorenti         ###   ########.fr       */
+/*   Updated: 2021/11/24 06:02:22 by rcorenti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,14 @@
 # include "mlx.h"
 # include "get_next_line.h"
 
-# define WIN_WIDTH 1920
-# define WIN_HEIGHT 1080
 # define VALID_CHARS "01CEP"
+# define TEXTURES_SIZE 64
 
-# define BACK_PATH "../textures/background.xpm"
-# define COLLEC_PATH "../textures/collectible.xpm"
-# define DOOR_PATH "../textures/door.xpm"
-# define WALL_PATH "../textures/wall.xpm"
-# define PLAYER_PATH "../textures/player.xpm"
+# define BACK_PATH "textures/background.xpm"
+# define COLLEC_PATH "textures/collectible.xpm"
+# define DOOR_PATH "textures/door.xpm"
+# define WALL_PATH "textures/wall.xpm"
+# define PLAYER_PATH "textures/player.xpm"
 
 typedef struct	s_img {
 	void	*img;

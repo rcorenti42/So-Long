@@ -6,7 +6,7 @@
 /*   By: rcorenti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 01:41:06 by rcorenti          #+#    #+#             */
-/*   Updated: 2021/11/24 06:48:25 by rcorenti         ###   ########.fr       */
+/*   Updated: 2021/11/25 07:32:58 by rcorenti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ typedef struct	s_mlx {
 	t_img	door;
 	t_img	wall;
 	t_img	player;
+	t_img	screen;
 }		t_mlx;
 
 void	check_map(char **argv, t_mlx *mlx);

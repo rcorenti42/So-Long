@@ -6,7 +6,7 @@
 #    By: rcorenti <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/17 01:30:16 by rcorenti          #+#    #+#              #
-#    Updated: 2021/11/23 03:48:46 by rcorenti         ###   ########.fr        #
+#    Updated: 2021/11/25 04:21:45 by rcorenti         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME = so_long
 
 CC = gcc
 
-FLAGS = #-Wall -Wextra -Werror
+FLAGS = #-g3 #-Wall -Wextra -Werror
 
 HEADER = -I includes -I ${MLX}
 

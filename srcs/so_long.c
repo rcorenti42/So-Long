@@ -6,59 +6,123 @@
 /*   By: rcorenti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 00:14:48 by rcorenti          #+#    #+#             */
-/*   Updated: 2021/11/24 06:48:05 by rcorenti         ###   ########.fr       */
+/*   Updated: 2021/11/25 03:49:04 by rcorenti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	add_background(t_mlx *mlx, t_img *screen)
-{
-	int	x;
-	int	y;
-
-	y = 0;
-	while (y < mlx->height)
-	{
-		x = 0;
-		while (x < mlx->width)
-		{
-			((int *)screen->img_ptr)[x + y * screen->size_line / 4]
-				= ((int *)mlx->back.img_ptr)[x % TEXTURES_SIZE
-				+ y % TEXTURES_SIZE * mlx->back.size_line / 4];
-			x++;
-		}
-		y++;
-	}
-}
-
-void	add_wall(t_mlx *mlx, t_img *screen)
+void	put_texture(t_img *screen, t_img *texture, int x, int y)
 {
 	int	i;
 	int	j;
-	int	x;
-	int	y;
+
+	i = 0;
+	while (i < TEXTURES_SIZE)
+	{
+		j = 0;
+		while (j < TEXTURES_SIZE)
+		{
+			if (((int *)texture->img_ptr)[i + j * texture->size_line / 4]
+				!= -16777216)
+				((int *)screen->img_ptr)[(x * TEXTURES_SIZE + i)
+					+ (y * TEXTURES_SIZE + j) * screen->size_line / 4]
+					= ((int *)texture->img_ptr)[i + j * texture->size_line / 4];
+			j++;
+		}
+		i++;
+	}
+}
+
+void	add_background(t_mlx *mlx)
+{
+	int	i;
+	int	j;
 
 	i = 0;
 	while (i < mlx->height / TEXTURES_SIZE)
 	{
 		j = 0;
-		while (map[i][j])
+		while (mlx->map[i][j])
 		{
-			if (map[i][j] == '1')
-			{
-				y = 0;
-				while (y < TEXTURES_SIZE)
-				{
-					x = 0;
-					while (x < TEXTURES_SIZE)
-					{
-						
-						x++;
-					}
-					y++;
-				}
-			}
+			if (mlx->map[i][j])
+				put_texture(&mlx->screen, &mlx->back, j, i);
+			j++;
+		}
+		i++;
+	}
+}
+
+void	add_wall(t_mlx *mlx)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < mlx->height / TEXTURES_SIZE)
+	{
+		j = 0;
+		while (mlx->map[i][j])
+		{
+			if (mlx->map[i][j] == '1')
+				put_texture(&mlx->screen, &mlx->wall, j, i);
+			j++;
+		}
+		i++;
+	}
+}
+
+void	add_collectibles(t_mlx *mlx)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < mlx->height / TEXTURES_SIZE)
+	{
+		j = 0;
+		while (mlx->map[i][j])
+		{
+			if (mlx->map[i][j] == 'C')
+				put_texture(&mlx->screen, &mlx->collec, j, i);
+			j++;
+		}
+		i++;
+	}
+}
+
+void	add_door(t_mlx *mlx)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < mlx->height / TEXTURES_SIZE)
+	{
+		j = 0;
+		while (mlx->map[i][j])
+		{
+			if (mlx->map[i][j] == 'E')
+				put_texture(&mlx->screen, &mlx->door, j, i);
+			j++;
+		}
+		i++;
+	}
+}
+
+void	add_player(t_mlx *mlx)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < mlx->height / TEXTURES_SIZE)
+	{
+		j = 0;
+		while (mlx->map[i][j])
+		{
+			if (mlx->map[i][j] == 'P')
+				put_texture(&mlx->screen, &mlx->player, j, i);
 			j++;
 		}
 		i++;
@@ -67,12 +131,14 @@ void	add_wall(t_mlx *mlx, t_img *screen)
 
 void	so_long(t_mlx *mlx)
 {
-	t_img	screen;
 
-	screen.img = mlx_new_image(mlx->mlx_ptr, mlx->width, mlx->height);
-	screen.img_ptr = mlx_get_data_addr(screen.img, &screen.bpp,
-			&screen.size_line, &screen.endian);
-	add_background(mlx, &screen);
-	add_wall(mlx, &screen);
-	mlx_put_image_to_window(mlx->mlx_ptr, mlx->mlx_win, screen.img, 0, 0);
+	mlx->screen.img = mlx_new_image(mlx->mlx_ptr, mlx->width, mlx->height);
+	mlx->screen.img_ptr = mlx_get_data_addr(mlx->screen.img, &mlx->screen.bpp,
+			&mlx->screen.size_line, &mlx->screen.endian);
+	add_background(mlx);
+	add_wall(mlx);
+	add_collectibles(mlx);
+	add_door(mlx);
+	add_player(mlx);
+	mlx_put_image_to_window(mlx->mlx_ptr, mlx->mlx_win, mlx->screen.img, 0, 0);
 }

@@ -6,7 +6,7 @@
 /*   By: rcorenti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 00:14:48 by rcorenti          #+#    #+#             */
-/*   Updated: 2021/11/25 03:49:04 by rcorenti         ###   ########.fr       */
+/*   Updated: 2021/11/26 05:51:48 by rcorenti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	put_texture(t_img *screen, t_img *texture, int x, int y)
 	}
 }
 
-void	add_background(t_mlx *mlx)
+void	add_textures(t_mlx *mlx)
 {
 	int	i;
 	int	j;
@@ -45,84 +45,14 @@ void	add_background(t_mlx *mlx)
 		j = 0;
 		while (mlx->map[i][j])
 		{
-			if (mlx->map[i][j])
-				put_texture(&mlx->screen, &mlx->back, j, i);
-			j++;
-		}
-		i++;
-	}
-}
-
-void	add_wall(t_mlx *mlx)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (i < mlx->height / TEXTURES_SIZE)
-	{
-		j = 0;
-		while (mlx->map[i][j])
-		{
+			put_texture(&mlx->screen, &mlx->back, j, i);
 			if (mlx->map[i][j] == '1')
 				put_texture(&mlx->screen, &mlx->wall, j, i);
-			j++;
-		}
-		i++;
-	}
-}
-
-void	add_collectibles(t_mlx *mlx)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (i < mlx->height / TEXTURES_SIZE)
-	{
-		j = 0;
-		while (mlx->map[i][j])
-		{
 			if (mlx->map[i][j] == 'C')
 				put_texture(&mlx->screen, &mlx->collec, j, i);
-			j++;
-		}
-		i++;
-	}
-}
-
-void	add_door(t_mlx *mlx)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (i < mlx->height / TEXTURES_SIZE)
-	{
-		j = 0;
-		while (mlx->map[i][j])
-		{
 			if (mlx->map[i][j] == 'E')
 				put_texture(&mlx->screen, &mlx->door, j, i);
-			j++;
-		}
-		i++;
-	}
-}
-
-void	add_player(t_mlx *mlx)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (i < mlx->height / TEXTURES_SIZE)
-	{
-		j = 0;
-		while (mlx->map[i][j])
-		{
-			if (mlx->map[i][j] == 'P')
-				put_texture(&mlx->screen, &mlx->player, j, i);
+			put_texture(&mlx->screen, &mlx->player, mlx->pos_x, mlx->pos_y);
 			j++;
 		}
 		i++;
@@ -131,14 +61,10 @@ void	add_player(t_mlx *mlx)
 
 void	so_long(t_mlx *mlx)
 {
-
 	mlx->screen.img = mlx_new_image(mlx->mlx_ptr, mlx->width, mlx->height);
 	mlx->screen.img_ptr = mlx_get_data_addr(mlx->screen.img, &mlx->screen.bpp,
 			&mlx->screen.size_line, &mlx->screen.endian);
-	add_background(mlx);
-	add_wall(mlx);
-	add_collectibles(mlx);
-	add_door(mlx);
-	add_player(mlx);
+	add_textures(mlx);
 	mlx_put_image_to_window(mlx->mlx_ptr, mlx->mlx_win, mlx->screen.img, 0, 0);
+	mlx_destroy_image(mlx->mlx_ptr, mlx->screen.img);
 }

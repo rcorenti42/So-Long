@@ -6,7 +6,7 @@
 /*   By: rcorenti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 06:07:43 by rcorenti          #+#    #+#             */
-/*   Updated: 2021/11/25 07:41:56 by rcorenti         ###   ########.fr       */
+/*   Updated: 2021/11/26 04:52:46 by rcorenti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,26 @@ void	ft_error(char *str)
 {
 	printf("Error\n%s\n", str);
 	exit(EXIT_FAILURE);
+}
+
+int	destroy_all(t_mlx *mlx)
+{
+	int	i;
+
+	i = 0;
+	mlx_destroy_image(mlx->mlx_ptr, mlx->back.img);
+	mlx_destroy_image(mlx->mlx_ptr, mlx->collec.img);
+	mlx_destroy_image(mlx->mlx_ptr, mlx->door.img);
+	mlx_destroy_image(mlx->mlx_ptr, mlx->wall.img);
+	mlx_destroy_image(mlx->mlx_ptr, mlx->player.img);
+	mlx_destroy_window(mlx->mlx_ptr, mlx->mlx_win);
+	while (i < mlx->height / TEXTURES_SIZE)
+	{
+		free(mlx->map[i]);
+		i++;
+	}
+	free(mlx->map);
+	exit(0);
 }
 
 void	stock_xpm(t_mlx *mlx)
@@ -58,41 +78,11 @@ void	stock_xpm(t_mlx *mlx)
 			&mlx->player.endian);
 }
 
-void	destroy_all(t_mlx *mlx)
-{
-	int	i;
-
-	i = 0;
-	mlx_destroy_image(mlx->mlx_ptr, mlx->back.img);
-	mlx_destroy_image(mlx->mlx_ptr, mlx->collec.img);
-	mlx_destroy_image(mlx->mlx_ptr, mlx->door.img);
-	mlx_destroy_image(mlx->mlx_ptr, mlx->wall.img);
-	mlx_destroy_image(mlx->mlx_ptr, mlx->player.img);
-	mlx_destroy_image(mlx->mlx_ptr, mlx->screen.img);
-	mlx_destroy_window(mlx->mlx_ptr, mlx->mlx_win);
-	while (i < mlx->height / TEXTURES_SIZE)
-	{
-		free(mlx->map[i]);
-		i++;
-	}
-	free(mlx->map);
-}
-
-int	ft_press(int key, t_mlx *mlx)
-{
-	//if (key = 119)
-}
-
-int	ft_close(t_mlx *mlx)
-{
-	destroy_all(mlx);
-	exit (0);
-}
-
 int	main(int argc, char **argv)
 {
 	t_mlx	mlx;
 
+	mlx.moves = 1;
 	if (argc != 2)
 	{
 		printf("Error\nNot enough or too many arguments\n");
@@ -104,8 +94,8 @@ int	main(int argc, char **argv)
 			mlx.height, "So Long !");
 	stock_xpm(&mlx);
 	so_long(&mlx);
-	mlx_hook(mlx.mlx_win, 17, 1L<<17, &ft_close, &mlx);
-	mlx_hook(mlx.mlx_win, 2, 1L<<0, &ft_press, &mlx);
+	mlx_hook(mlx.mlx_win, 17, 1L << 17, &destroy_all, &mlx);
+	mlx_hook(mlx.mlx_win, 2, 1L << 0, &ft_press, &mlx);
 	mlx_loop(mlx.mlx_ptr);
 	return (0);
 }

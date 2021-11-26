@@ -6,25 +6,11 @@
 /*   By: rcorenti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 06:07:43 by rcorenti          #+#    #+#             */
-/*   Updated: 2021/11/26 04:52:46 by rcorenti         ###   ########.fr       */
+/*   Updated: 2021/11/26 08:59:29 by rcorenti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-char	*ft_strcpy(char *dest, char *src)
-{
-	int	i;
-
-	i = 0;
-	while (src[i])
-	{
-		dest[i] = src[i];
-		i++;
-	}
-	dest[i] = '\0';
-	return (dest);
-}
 
 void	ft_error(char *str)
 {
@@ -50,6 +36,7 @@ int	destroy_all(t_mlx *mlx)
 	}
 	free(mlx->map);
 	exit(0);
+	return (0);
 }
 
 void	stock_xpm(t_mlx *mlx)

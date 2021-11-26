@@ -6,13 +6,13 @@
 /*   By: rcorenti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 15:25:40 by rcorenti          #+#    #+#             */
-/*   Updated: 2020/01/18 21:50:02 by rcorenti         ###   ########.fr       */
+/*   Updated: 2021/11/26 08:54:10 by rcorenti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static int		get_newline(char *str)
+static int	get_newline(char *str)
 {
 	int	i;
 
@@ -28,7 +28,7 @@ static int		get_newline(char *str)
 	return (-1);
 }
 
-static int		get_line(char **ptr, char **line)
+static int	get_line(char **ptr, char **line)
 {
 	char	*tmp;
 	int		size;
@@ -56,7 +56,7 @@ static int		get_line(char **ptr, char **line)
 	return (result);
 }
 
-static int		read_line(int fd, char **ptr, char **line)
+static int	read_line(int fd, char **ptr, char **line)
 {
 	char	buff[BUFFER_SIZE + 1];
 	char	*ptr_buff;
@@ -65,14 +65,16 @@ static int		read_line(int fd, char **ptr, char **line)
 
 	str = *ptr;
 	ft_memset(buff, 0, BUFFER_SIZE + 1);
-	while ((size = read(fd, buff, BUFFER_SIZE)) > 0)
+	size = read(fd, buff, BUFFER_SIZE);
+	while (size > 0)
 	{
 		buff[BUFFER_SIZE] = '\0';
 		ptr_buff = buff;
 		*ptr = ft_strjoin(ptr, &ptr_buff, 1);
 		ft_memset(buff, 0, BUFFER_SIZE + 1);
 		if (get_newline(*ptr) != -1)
-			break;
+			break ;
+		size = read(fd, buff, BUFFER_SIZE);
 	}
 	if (size == 0 && (!str || *str == '\0'))
 	{
@@ -80,10 +82,13 @@ static int		read_line(int fd, char **ptr, char **line)
 		free(*ptr);
 		return (0);
 	}
-	return ((size != -1 && *ptr) ? get_line(ptr, line) : size);
+	if (size != -1 && *ptr)
+		return (get_line(ptr, line));
+	else
+		return (size);
 }
 
-int				get_next_line(int fd, char **line)
+int	get_next_line(int fd, char **line)
 {
 	static char	*ptr;
 	int			result;

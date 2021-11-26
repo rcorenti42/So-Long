@@ -6,7 +6,7 @@
 /*   By: rcorenti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 03:28:37 by rcorenti          #+#    #+#             */
-/*   Updated: 2021/11/26 03:57:25 by rcorenti         ###   ########.fr       */
+/*   Updated: 2021/11/26 08:36:34 by rcorenti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,5 @@ int	ft_press(int key, t_mlx *mlx)
 	if (mlx->map[mlx->pos_y][mlx->pos_x] == 'E')
 		ft_out(mlx);
 	so_long(mlx);
+	return (key);
 }

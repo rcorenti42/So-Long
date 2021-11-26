@@ -6,7 +6,7 @@
 /*   By: rcorenti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 01:03:10 by rcorenti          #+#    #+#             */
-/*   Updated: 2021/11/26 05:54:15 by rcorenti         ###   ########.fr       */
+/*   Updated: 2021/11/26 08:43:34 by rcorenti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,9 +133,7 @@ void	check_map(char **argv, t_mlx *mlx)
 
 	i = 0;
 	j = -1;
-	printf("%s", argv[1] + (ft_strlen(argv[1]) - 4));
-	if (!ft_strncmp_inv(argv[1], ".ber", 4))
-		ft_error(".ber");
+	ft_strncmp_inv(argv[1], ".ber", 4);
 	fd = open(argv[1], O_RDONLY);
 	if (fd < 0)
 		ft_error("File Error");
@@ -144,8 +142,10 @@ void	check_map(char **argv, t_mlx *mlx)
 		if (j != -1 && j != (int)ft_strlen(buff))
 			ft_error("Invalid Map Size");
 		j = ft_strlen(buff);
+		free(buff);
 		i++;
 	}
+	free(buff);
 	close(fd);
 	mlx->height = i * TEXTURES_SIZE;
 	mlx->width = j * TEXTURES_SIZE;

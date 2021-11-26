@@ -6,7 +6,7 @@
 /*   By: rcorenti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 01:41:06 by rcorenti          #+#    #+#             */
-/*   Updated: 2021/11/26 05:50:11 by rcorenti         ###   ########.fr       */
+/*   Updated: 2021/11/26 09:04:14 by rcorenti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,11 @@ typedef struct s_mlx {
 void	check_map(char **argv, t_mlx *mlx);
 void	ft_error(char *str);
 char	*ft_strcpy(char *dest, char *src);
-int	ft_press(int key, t_mlx *mlx);
+size_t		ft_strlen(const char *str);
+int		ft_press(int key, t_mlx *mlx);
 void	so_long(t_mlx *mlx);
-int	ft_strncmp_inv(char *s1, char *s2, int n);
+int		ft_strncmp_inv(char *s1, char *s2, int n);
 void	malloc_map(t_mlx *mlx, int line, int col, char *file);
+int		destroy_all(t_mlx *mlx);
 
 #endif

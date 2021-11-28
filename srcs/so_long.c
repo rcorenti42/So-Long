@@ -6,13 +6,13 @@
 /*   By: rcorenti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 00:14:48 by rcorenti          #+#    #+#             */
-/*   Updated: 2021/11/26 05:51:48 by rcorenti         ###   ########.fr       */
+/*   Updated: 2021/11/28 02:06:46 by rcorenti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	put_texture(t_img *screen, t_img *texture, int x, int y)
+static void	put_texture(t_img *screen, t_img *texture, int x, int y)
 {
 	int	i;
 	int	j;
@@ -34,7 +34,7 @@ void	put_texture(t_img *screen, t_img *texture, int x, int y)
 	}
 }
 
-void	add_textures(t_mlx *mlx)
+static void	add_textures(t_mlx *mlx)
 {
 	int	i;
 	int	j;

@@ -6,7 +6,7 @@
 /*   By: rcorenti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 05:00:20 by rcorenti          #+#    #+#             */
-/*   Updated: 2021/11/26 09:06:18 by rcorenti         ###   ########.fr       */
+/*   Updated: 2021/11/28 02:32:17 by rcorenti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,21 +22,7 @@ size_t	ft_strlen(const char *str)
 	return (i);
 }
 
-char    *ft_strcpy(char *dest, char *src)
-{
-        int     i;
-
-        i = 0;
-        while (src[i])
-        {
-                dest[i] = src[i];
-                i++;
-        }
-        dest[i] = '\0';
-        return (dest);
-}
-
-void	malloc_map(t_mlx *mlx, int line, int col, char *file)
+void	malloc_map(t_mlx *mlx, int col, char *file)
 {
 	int	fd;
 	int	i;
@@ -53,7 +39,7 @@ void	malloc_map(t_mlx *mlx, int line, int col, char *file)
 	free(mlx->map[i]);
 }
 
-int	ft_strncmp_inv(char *s1, char *s2, int n)
+void	ft_strncmp_inv(char *s1, char *s2, int n)
 {
 	int	s1_len;
 	int	s2_len;

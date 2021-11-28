@@ -6,13 +6,13 @@
 /*   By: rcorenti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 01:03:10 by rcorenti          #+#    #+#             */
-/*   Updated: 2021/11/26 08:43:34 by rcorenti         ###   ########.fr       */
+/*   Updated: 2021/11/28 02:06:22 by rcorenti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	parse_player(t_mlx *mlx)
+static void	parse_player(t_mlx *mlx)
 {
 	int	i;
 	int	j;
@@ -38,7 +38,7 @@ void	parse_player(t_mlx *mlx)
 	}
 }
 
-void	check_walls(t_mlx *mlx, int col, int line)
+static void	check_walls(t_mlx *mlx, int col, int line)
 {
 	int	i;
 
@@ -66,7 +66,7 @@ void	check_walls(t_mlx *mlx, int col, int line)
 	parse_player(mlx);
 }
 
-void	chars_minimum(t_mlx *mlx)
+static void	chars_minimum(t_mlx *mlx)
 {
 	int	c;
 	int	e;
@@ -95,7 +95,7 @@ void	chars_minimum(t_mlx *mlx)
 		ft_error("Miss Char Type Map Or Too Much Players");
 }
 
-void	chars_valid(t_mlx *mlx)
+static void	chars_valid(t_mlx *mlx)
 {
 	int	i;
 	int	j;
@@ -149,6 +149,6 @@ void	check_map(char **argv, t_mlx *mlx)
 	close(fd);
 	mlx->height = i * TEXTURES_SIZE;
 	mlx->width = j * TEXTURES_SIZE;
-	malloc_map(mlx, i, j, argv[1]);
+	malloc_map(mlx, i, argv[1]);
 	chars_valid(mlx);
 }

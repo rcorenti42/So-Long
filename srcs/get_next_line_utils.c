@@ -6,7 +6,7 @@
 /*   By: rcorenti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 15:26:32 by rcorenti          #+#    #+#             */
-/*   Updated: 2021/11/26 08:57:56 by rcorenti         ###   ########.fr       */
+/*   Updated: 2021/11/28 04:08:16 by rcorenti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,21 @@ char	*ft_strndup(const char *s, size_t size)
 	return (str);
 }
 
+static char	*ft_choice(char **str, char **s1, char **s2)
+{
+	*str = *s1;
+	if (*str)
+		return (ft_strndup(*s1, ft_strlen(*s1)));
+	else
+		return (ft_strndup(*s2, ft_strlen(*s2)));
+}
+
 char	*ft_strjoin(char **s1, char **s2, int i)
 {
 	char	*str;
 	size_t	len;
 
+	str = NULL;
 	if (*s1 && *s2)
 	{
 		len = ft_strlen(*s1) + ft_strlen(*s2);
@@ -76,13 +86,7 @@ char	*ft_strjoin(char **s1, char **s2, int i)
 		}
 	}
 	else
-	{
-		str = *s1;
-		if (str)
-			ft_strndup(*s1, ft_strlen(*s1));
-		else
-			ft_strndup(*s2, ft_strlen(*s2));
-	}
+		str = ft_choice(&str, s1, s2);
 	free(*s1);
 	*s1 = NULL;
 	if (i == 2)

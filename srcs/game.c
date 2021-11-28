@@ -6,13 +6,13 @@
 /*   By: rcorenti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 03:28:37 by rcorenti          #+#    #+#             */
-/*   Updated: 2021/11/26 08:36:34 by rcorenti         ###   ########.fr       */
+/*   Updated: 2021/11/28 02:05:14 by rcorenti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	collisions(t_mlx *mlx, int end_x, int end_y)
+static void	collisions(t_mlx *mlx, int end_x, int end_y)
 {
 	if (mlx->map[end_y][end_x] != '1')
 	{
@@ -23,7 +23,7 @@ void	collisions(t_mlx *mlx, int end_x, int end_y)
 	}
 }
 
-void	ft_out(t_mlx *mlx)
+static void	ft_out(t_mlx *mlx)
 {
 	int	i;
 	int	j;

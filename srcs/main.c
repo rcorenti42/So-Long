@@ -6,7 +6,7 @@
 /*   By: rcorenti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 06:07:43 by rcorenti          #+#    #+#             */
-/*   Updated: 2021/11/26 08:59:29 by rcorenti         ###   ########.fr       */
+/*   Updated: 2021/11/28 02:05:37 by rcorenti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	destroy_all(t_mlx *mlx)
 	return (0);
 }
 
-void	stock_xpm(t_mlx *mlx)
+static void	stock_xpm(t_mlx *mlx)
 {
 	mlx->back.img = mlx_xpm_file_to_image(mlx->mlx_ptr, BACK_PATH,
 			&mlx->back.width, &mlx->back.height);

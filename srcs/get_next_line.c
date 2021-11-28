@@ -6,7 +6,7 @@
 /*   By: rcorenti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 15:25:40 by rcorenti          #+#    #+#             */
-/*   Updated: 2021/11/26 08:54:10 by rcorenti         ###   ########.fr       */
+/*   Updated: 2021/11/28 02:31:57 by rcorenti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,14 @@ static int	get_line(char **ptr, char **line)
 	return (result);
 }
 
+static int	ret_read_line(char **ptr, char **line, int size)
+{
+	if (size != -1 && *ptr)
+		return (get_line(ptr, line));
+	else
+		return (size);
+}
+
 static int	read_line(int fd, char **ptr, char **line)
 {
 	char	buff[BUFFER_SIZE + 1];
@@ -82,10 +90,7 @@ static int	read_line(int fd, char **ptr, char **line)
 		free(*ptr);
 		return (0);
 	}
-	if (size != -1 && *ptr)
-		return (get_line(ptr, line));
-	else
-		return (size);
+	return (ret_read_line(ptr, line, size));
 }
 
 int	get_next_line(int fd, char **line)
